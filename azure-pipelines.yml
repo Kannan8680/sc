@@ -2,7 +2,7 @@ trigger:
   - main
 
 pool:
-  name: Default  # ✅ Uses your own self-hosted agent
+  name: Default  # Uses your self-hosted agent
 
 steps:
   - task: NodeTool@0
@@ -12,12 +12,17 @@ steps:
 
   - script: |
       cd my-app
-      npm install
+      npm install --legacy-peer-deps
       npm run build
     displayName: 'Build React App'
 
   - script: |
       cd shopping-backend
-      npm install
-      npm start
-    displayName: 'Start Backend Server'
+      npm install --legacy-peer-deps
+    displayName: 'Install Backend Dependencies'
+
+  # Optional: Run backend tests (if available)
+  # - script: |
+  #     cd shopping-backend
+  #     npm test
+  #   displayName: 'Run Backend Tests'
