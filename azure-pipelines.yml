@@ -2,7 +2,7 @@ trigger:
   - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default  # ✅ Uses your own self-hosted agent
 
 steps:
   - task: NodeTool@0
@@ -15,8 +15,9 @@ steps:
       npm install
       npm run build
     displayName: 'Build React App'
+
   - script: |
-      cd ../shopping-backend
+      cd shopping-backend
       npm install
       npm start
-    displayName: 'Start Backend'
+    displayName: 'Start Backend Server'
